@@ -35,19 +35,27 @@ const getData = async () => {
   }
 };
 
+// sorting function for sorting with decreasing frequency
+const sortDec = (x, y) => {
+  return y.count - x.count;
+};
+
 //Getting the request and
 app.get("/:id", (req, res) => {
   //Get the URL and parse it
-  var parsedUrl = url.parse(req.url, true);
+  let parsedUrl = url.parse(req.url, true);
 
   //Get the path
-  var path = parsedUrl.pathname;
+  let path = parsedUrl.pathname;
 
   //Get the trimmed Path
-  var trimmedPath = path.replace(/^\/+|\/+$/g, "");
-  console.log(trimmedPath);
+  let trimmedPath = path.replace(/^\/+|\/+$/g, "");
+
+  let N = trimmedPath;
 
   console.log("We got a hit");
+
+  //
 
   //Return the response
   (async () => {
@@ -55,9 +63,34 @@ app.get("/:id", (req, res) => {
     finalData = data;
 
     //Find the frequencey //TODO
+    const splitedData = data.split(/\s+/);
 
+    let hashTable = {};
+
+    splitedData.forEach((word) => {
+      if (hashTable.hasOwnProperty(word)) {
+        hashTable[word] += 1;
+      } else {
+        hashTable[word] = 1;
+      }
+    });
+
+    let wordsArray = [];
+    wordsArray = Object.keys(hashTable).map((word) => {
+      return {
+        word: word,
+        count: hashTable[word],
+      };
+    });
+    wordsArray.sort((x, y) => sortDec(x, y));
+    console.log(wordsArray);
+
+    let toSendData = wordsArray.filter((word, index) => {
+      return index < N;
+    });
+    console.log(toSendData);
     //Return the Nth item //TODO
-    return res.json(data);
+    return res.json(toSendData);
   })().catch((err) => {
     console.log(err);
   });
