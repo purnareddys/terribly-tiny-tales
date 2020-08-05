@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
+import axios from "axios";
 import Header from "./Components/Header";
 import ResultTable from "./Components/ResultTable";
 import { Button, Container } from "react-bootstrap";
 function App() {
+  useEffect(() => {
+    axios.get(`http://localhost:5000/`).then((response) => {
+      console.log(response.data);
+    });
+  }, []);
   return (
     <>
       <Header />
