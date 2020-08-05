@@ -1,29 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
-import axios from "axios";
 import Header from "./Components/Header";
 import ResultTable from "./Components/ResultTable";
 import { Button, Container } from "react-bootstrap";
+import { Context } from "./Context";
 function App() {
-  useEffect(() => {
-    axios.get(`http://localhost:5000/1`).then((response) => {
-      console.log(response.data);
-    });
-  }, []);
+  const [inputN, setInputN] = useState("");
+
+  const { getData, data } = useContext(Context);
   return (
     <>
       <Header />
       <form className="raise">
         <label className="topN">
           <h3>Top N</h3>
-          <input type="text" className="num__input" />
-          <Button style={{ marginTop: 10 }} variant="outline-success" size="lg">
+          <input
+            type="text"
+            className="num__input"
+            onChange={(e) => setInputN(e.target.value)}
+          />
+          <Button
+            onClick={() => getData(inputN)}
+            style={{ marginTop: 10 }}
+            variant="outline-success"
+            size="lg"
+          >
             Find
           </Button>
         </label>
       </form>
       <Container className="results-table">
-        <ResultTable />
+        {data.length > 0 && <ResultTable />}
       </Container>
     </>
   );

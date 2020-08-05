@@ -53,16 +53,15 @@ app.get("/:id", (req, res) => {
 
   let N = trimmedPath;
 
+  //for testing purpose
   console.log("We got a hit");
-
-  //
 
   //Return the response
   (async () => {
     const data = await getData();
     finalData = data;
 
-    //Find the frequencey //TODO
+    //Find the frequencey
     const splitedData = data.split(/\s+/);
 
     let hashTable = {};
@@ -83,13 +82,14 @@ app.get("/:id", (req, res) => {
       };
     });
     wordsArray.sort((x, y) => sortDec(x, y));
-    console.log(wordsArray);
 
+    //Return the Nth item
+
+    //Using Filter method to return the TOP N Words
     let toSendData = wordsArray.filter((word, index) => {
       return index < N;
     });
-    console.log(toSendData);
-    //Return the Nth item //TODO
+
     return res.json(toSendData);
   })().catch((err) => {
     console.log(err);
