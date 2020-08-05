@@ -6,7 +6,7 @@ import ResultTable from "./Components/ResultTable";
 import { Button, Container } from "react-bootstrap";
 function App() {
   useEffect(() => {
-    axios.get(`http://localhost:5000/`).then((response) => {
+    axios.get(`http://localhost:5000/1`).then((response) => {
       console.log(response.data);
     });
   }, []);

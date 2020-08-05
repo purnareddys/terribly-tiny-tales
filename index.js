@@ -1,12 +1,14 @@
+// Dependencies
 const express = require("express");
-// const bodyParser = require("body-parser");
+const axios = require("axios");
+var url = require("url");
 
 const app = express();
 
+//PORT
 const port = 5000;
-//Middlewares
 
-// app.use(bodyParser.json());
+//Middlewares
 app.use(express.json());
 app.use(express.urlencoded());
 
@@ -21,11 +23,46 @@ app.use((req, res, next) => {
 
   next();
 });
-app.get("/", (req, res) => {
-  console.log(req.query);
+
+// making a get request to the url
+const getData = async () => {
+  try {
+    return await axios
+      .get("https://terriblytinytales.com/test.txt")
+      .then((res) => res.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Getting the request and
+app.get("/:id", (req, res) => {
+  //Get the URL and parse it
+  var parsedUrl = url.parse(req.url, true);
+
+  //Get the path
+  var path = parsedUrl.pathname;
+
+  //Get the trimmed Path
+  var trimmedPath = path.replace(/^\/+|\/+$/g, "");
+  console.log(trimmedPath);
+
   console.log("We got a hit");
-  res.json({ username: "purna" });
+
+  //Return the response
+  (async () => {
+    const data = await getData();
+    finalData = data;
+
+    //Find the frequencey //TODO
+
+    //Return the Nth item //TODO
+    return res.json(data);
+  })().catch((err) => {
+    console.log(err);
+  });
 });
+
 app.listen(port, () => {
   console.log("The Server is running on Port ", port);
 });
