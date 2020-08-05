@@ -6,7 +6,7 @@ const ResultTable = () => {
   const { data } = useContext(Context);
   return (
     <>
-      <h2>Top N Words</h2>
+      <h2 style={{ marginLeft: 450 }}>Top N Words</h2>
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>

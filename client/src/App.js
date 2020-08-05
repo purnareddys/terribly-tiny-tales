@@ -17,6 +17,7 @@ function App() {
           <input
             type="text"
             className="num__input"
+            required
             onChange={(e) => setInputN(e.target.value)}
           />
           <Button
