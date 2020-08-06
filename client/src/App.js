@@ -2,12 +2,13 @@ import React, { useState, useContext } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import ResultTable from "./Components/ResultTable";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
 import { Context } from "./Context";
 function App() {
   const [inputN, setInputN] = useState("");
+  const [clicked, setClicked] = useState(false);
 
-  const { getData, data } = useContext(Context);
+  const { getData, data, clearData } = useContext(Context);
   return (
     <>
       <Header />
@@ -21,7 +22,11 @@ function App() {
             onChange={(e) => setInputN(e.target.value)}
           />
           <Button
-            onClick={() => getData(inputN)}
+            onClick={() => {
+              clearData();
+              getData(inputN);
+              setClicked(true);
+            }}
             style={{ marginTop: 10 }}
             variant="outline-success"
             size="lg"
@@ -31,7 +36,17 @@ function App() {
         </label>
       </form>
       <Container className="results-table">
-        {data.length > 0 && <ResultTable />}
+        {data.length > 0 ? (
+          <ResultTable />
+        ) : (
+          clicked && (
+            <Spinner
+              animation="grow"
+              variant="success"
+              style={{ marginLeft: 550 }}
+            />
+          )
+        )}
       </Container>
     </>
   );

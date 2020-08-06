@@ -9,8 +9,11 @@ const ContextProvider = (props) => {
       setData(response.data);
     });
   };
+  const clearData = () => {
+    setData([]);
+  };
   return (
-    <Context.Provider value={{ getData, data }}>
+    <Context.Provider value={{ getData, data, clearData }}>
       {props.children}
     </Context.Provider>
   );
