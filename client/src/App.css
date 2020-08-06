@@ -17,6 +17,14 @@ form {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   color: #fff;
 }
+
+/* for hiding the input field arrows */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 /* form:hover {
   box-shadow: 0 0 20px rgba(0, 252, 0, 0.568);
 } */
@@ -51,4 +59,12 @@ form {
 .raise:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
   transform: translateY(-0.25em);
+}
+
+/* error display, if user enters wrong input or no input at all */
+.error-display {
+  color: red;
+  text-transform: capitalize;
+  font-size: 24px;
+  margin-left: 485px;
 }
