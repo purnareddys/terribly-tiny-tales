@@ -44,6 +44,9 @@ function App() {
           </Button>
         </label>
       </form>
+
+      {/* only display the table if the data is fetched */}
+
       <Container className="results-table">
         {data.length > 0
           ? !err && <ResultTable />
@@ -55,6 +58,9 @@ function App() {
               />
             )}
       </Container>
+
+      {/* {Display error message if user enters any invalid input} */}
+
       <div className="error-display">
         {err && <p>Please provide valid input</p>}
       </div>

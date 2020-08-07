@@ -59,7 +59,7 @@ app.get("/:id", (req, res) => {
     const data = await getData();
     finalData = data;
 
-    //Find the frequencey
+    //Find the frequency of every word
     const splitedData = data.split(/\s+/);
 
     let hashTable = {};

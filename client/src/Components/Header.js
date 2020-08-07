@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
 
+// A Simple Header Component
 const Header = () => {
   return (
     <>

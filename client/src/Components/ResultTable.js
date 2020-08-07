@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../Context";
 import { Table } from "react-bootstrap";
 
+// Component for redering the fetched data in the form of tabel
 const ResultTable = () => {
   const { data } = useContext(Context);
   return (
