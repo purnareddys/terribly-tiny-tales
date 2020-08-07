@@ -12,7 +12,7 @@ For starting backend server
 
 ```sh
 $ npm install
-$ nodemon index.js
+$ npm start
 ```
 
 For frontend
