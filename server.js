@@ -1,18 +1,18 @@
-// Dependencies
+// Importing Modules
 const express = require("express");
 const axios = require("axios");
+const path = require("path");
 var url = require("url");
 
+//Define  Global Variables
 const app = express();
-
-//PORT
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded());
 
-//CORS
+//CORS //Configuration
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -45,11 +45,8 @@ app.get("/:id", (req, res) => {
   //Get the URL and parse it
   let parsedUrl = url.parse(req.url, true);
 
-  //Get the path
-  let path = parsedUrl.pathname;
-
   //Get the trimmed Path
-  let trimmedPath = path.replace(/^\/+|\/+$/g, "");
+  let trimmedPath = parsedUrl.pathname.replace(/^\/+|\/+$/g, "");
 
   let N = trimmedPath;
 
@@ -58,6 +55,7 @@ app.get("/:id", (req, res) => {
 
   //Return the response
   (async () => {
+    //fetch the data
     const data = await getData();
     finalData = data;
 
@@ -84,7 +82,6 @@ app.get("/:id", (req, res) => {
     wordsArray.sort((x, y) => sortDec(x, y));
 
     //Return the Nth item
-
     //Using Filter method to return the TOP N Words
     let toSendData = wordsArray.filter((word, index) => {
       return index < N;
@@ -95,6 +92,14 @@ app.get("/:id", (req, res) => {
     console.log(err);
   });
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(port, () => {
   console.log("The Server is running on Port ", port);
