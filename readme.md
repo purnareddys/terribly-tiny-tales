@@ -1,6 +1,10 @@
 # Terribly Tiny Tales
 
-### Tech
+### Hosted URL :
+
+https://full-stack-react-node-ttt.herokuapp.com/
+
+### Tech Stack
 
 - [React](https://reactjs.org/) - React is a JavaScript library for building user interfaces
 - [Bootstrap](https://getbootstrap.com/) - Sleek, intuitive, and powerful front-end framework for faster and easier web development
@@ -22,3 +26,9 @@ $ cd client
 $ npm install
 $ npm start
 ```
+
+### Test Cases
+
+- When user haven’t entered any input, and submitted
+- When user entered a negative number or 0
+- When user entered a valid input
