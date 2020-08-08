@@ -5,7 +5,7 @@ const Context = React.createContext();
 const ContextProvider = (props) => {
   const [data, setData] = useState([]);
   const getData = (N) => {
-    axios.get(`http://localhost:5000/${N}`).then((response) => {
+    axios.get(`/${N}`).then((response) => {
       setData(response.data);
     });
   };

@@ -20,6 +20,7 @@
   "bugs": {
     "url": "https://github.com/purnareddys/terribly-tiny-tales/issues"
   },
+  "proxy": "http://localhost:8080",
   "homepage": "https://github.com/purnareddys/terribly-tiny-tales#readme",
   "dependencies": {
     "axios": "^0.19.2",
