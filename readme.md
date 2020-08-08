@@ -4,6 +4,11 @@
 
 https://full-stack-react-node-ttt.herokuapp.com/
 
+### Note
+
+The Hosted app is facing some issue, will resolve it soon. Mean while please
+test the same locally
+
 ### Tech Stack
 
 - [React](https://reactjs.org/) - React is a JavaScript library for building user interfaces
