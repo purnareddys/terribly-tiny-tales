@@ -32,3 +32,9 @@ $ npm start
 - When user haven’t entered any input, and submitted
 - When user entered a negative number or 0
 - When user entered a valid input
+
+
+### Complexity
+ - Θ(n) Time Complexity (For finding the frequency), n corresponds to number of words. 
+ - Θ(n log(n)) for sorting.
+ - Overall Complexity Θ(n log(n))
